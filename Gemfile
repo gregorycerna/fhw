@@ -7,7 +7,6 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'redcarpet', '~> 3.0.0' # for markdown
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
@@ -25,12 +24,12 @@ group :development do
   gem 'guard-rails'
   gem 'guard-rspec'
   gem 'html2haml'
-  gem 'hub', :require=>nil
+  gem 'hub', require: nil
   gem 'quiet_assets'
   gem 'rails_layout'
-  gem 'rb-fchange', :require=>false
-  gem 'rb-fsevent', :require=>false
-  gem 'rb-inotify', :require=>false
+  gem 'rb-fchange', require: false
+  gem 'rb-fsevent', require: false
+  gem 'rb-inotify', require: false
   gem 'spring-commands-rspec'
 end
 group :development, :test do
@@ -50,3 +49,7 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
+
+# Added by me
+gem 'redcarpet' # enable markdown in haml
+gem "paperclip", "~> 4.2"   # file attachment for Active Record

@@ -53,3 +53,4 @@ end
 # Added by me
 gem 'redcarpet' # enable markdown in haml
 gem "paperclip", "~> 4.2"   # file attachment for Active Record
+gem 'jquery-ui-rails'

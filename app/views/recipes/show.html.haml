@@ -7,17 +7,20 @@
   %b Url:
   = @recipe.url
 %p
-  %b Date to serve:
-  = @recipe.date_to_serve
+  %b Day of the week:
+  = @recipe.day
 %p
-  %b User:
-  = @recipe.user
+  %b Date to serve:
+  = possible_date @recipe.date_to_serve
+%p
+  %b Submitted by:
+  = @recipe.user.name
 %p
   %b Partner:
   = @recipe.partner
 %p
   %b Ingredients:
-  = @recipe.ingredients
+  %pre= @recipe.ingredients
 
 = link_to 'Edit', edit_recipe_path(@recipe)
 \|

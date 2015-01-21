@@ -1,6 +1,41 @@
-%h1 Listing recipes
+%br
+%br
 
-%table
+= link_to 'Add a New Recipe', new_recipe_path, class: 'btn btn-lg btn-danger'
+
+%br
+%br
+
+%h2 Recipes with no date
+
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th Name
+      %th Url
+      %th Date to serve
+      %th User
+      %th Partner
+      %th Ingredients
+      %th
+
+  %tbody
+    - @recipes.select{|x|x.date_to_serve.nil?}.each do |recipe|
+      %tr
+        %td= link_to recipe.name, recipe
+        %td= recipe.url
+        %td= possible_date recipe.date_to_serve
+        %td= recipe.user.name
+        %td= recipe.partner
+        %td
+          %pre= recipe.ingredients
+        %td= link_to 'Delete', recipe, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+%h2 Recipes with a date
+
+%table.table.table-striped.table-bordered
   %thead
     %tr
       %th Name
@@ -11,21 +46,19 @@
       %th Ingredients
       %th
       %th
-      %th
-      
+
   %tbody
-    - @recipes.each do |recipe|
+    - @recipes.select{|x|!x.date_to_serve.nil?}.each do |recipe|
       %tr
-        %td= recipe.name
+        %td= link_to recipe.name, recipe
         %td= recipe.url
-        %td= recipe.date_to_serve
-        %td= recipe.user
+        %td= possible_date recipe.date_to_serve
+        %td= recipe.user.name
         %td= recipe.partner
-        %td= recipe.ingredients
-        %td= link_to 'Show', recipe
-        %td= link_to 'Edit', edit_recipe_path(recipe)
-        %td= link_to 'Destroy', recipe, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td
+          %pre= recipe.ingredients
+        %td= link_to 'Delete', recipe, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Clear date', clear_date_path(recipe), method: :patch, confirm: 'Are you sure?'
 
 %br
 
-= link_to 'New Recipe', new_recipe_path

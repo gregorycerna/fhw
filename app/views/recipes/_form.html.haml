@@ -1,0 +1,12 @@
+= simple_form_for(@recipe) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :url
+    = f.association :user
+    = f.input :partner
+    = f.input :ingredients
+
+  .form-actions
+    = f.button :submit

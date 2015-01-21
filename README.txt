@@ -13,8 +13,6 @@ list of links to officer descriptions
 Step 2
 ======
 
-TODO: saved YouTube about paperclip
-
 Recipe
 ------
 txt region for desired ingredients
@@ -33,7 +31,7 @@ txt region for desired ingredients
 URL
 date submitted
 date to serve
-submitter name
+submitter:User
 
 Step 3
 ======

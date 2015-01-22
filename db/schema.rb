@@ -11,7 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121195637) do
+ActiveRecord::Schema.define(version: 20150122203256) do
+
+  create_table "checkoffs", force: :cascade do |t|
+    t.integer  "task_id",    null: false
+    t.integer  "did_id",     null: false
+    t.boolean  "complete",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "checkoffs", ["did_id"], name: "index_checkoffs_on_did_id"
+  add_index "checkoffs", ["task_id"], name: "index_checkoffs_on_task_id"
+
+  create_table "dids", force: :cascade do |t|
+    t.datetime "time",       null: false
+    t.string   "notes"
+    t.integer  "labor_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "dids", ["labor_id"], name: "index_dids_on_labor_id"
+
+  create_table "labors", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.string   "description", null: false
+    t.integer  "user_id",     null: false
+    t.string   "dueday",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "labors", ["user_id"], name: "index_labors_on_user_id"
 
   create_table "recipes", force: :cascade do |t|
     t.string   "name",          null: false
@@ -27,6 +59,15 @@ ActiveRecord::Schema.define(version: 20150121195637) do
 
   add_index "recipes", ["user_id"], name: "index_recipes_on_user_id"
 
+  create_table "tasks", force: :cascade do |t|
+    t.string   "description", null: false
+    t.integer  "labor_id",    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "tasks", ["labor_id"], name: "index_tasks_on_labor_id"
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -40,7 +81,7 @@ ActiveRecord::Schema.define(version: 20150121195637) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
+    t.string   "name",                                null: false
     t.integer  "role"
   end
 

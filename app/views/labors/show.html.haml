@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @labor.name
+%p
+  %b Description:
+  = @labor.description
+%p
+  %b User:
+  = @labor.user.name
+%p
+  %b Dueday:
+  = @labor.dueday
+
+= link_to 'Edit', edit_labor_path(@labor)
+\|
+= link_to 'Back', labors_path

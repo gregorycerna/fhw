@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Time:
+  = @did.time
+%p
+  %b Notes:
+  = @did.notes
+%p
+  %b Labor:
+  = @did.labor
+
+= link_to 'Edit', edit_did_path(@did)
+\|
+= link_to 'Back', dids_path

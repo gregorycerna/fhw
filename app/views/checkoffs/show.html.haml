@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Task:
+  = @checkoff.task
+%p
+  %b Did:
+  = @checkoff.did
+%p
+  %b Complete:
+  = @checkoff.complete
+
+= link_to 'Edit', edit_checkoff_path(@checkoff)
+\|
+= link_to 'Back', checkoffs_path

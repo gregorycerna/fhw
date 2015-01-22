@@ -75,22 +75,26 @@ Labor
 -----
 name
 description
-tasks:[LaborTask]
-holder:User   # one User per labor?
-timesItWasDone:[DidLaborEvent]
-duedate:Date
+dueday:DayOfTheWeek
+:[Task]
+:User   # one User per labor.
+:[Did]
 
-DidLaborEvent (nested route [if there is a route])
--------------
-date
-:Labor
-:User (user = labor.user)
-notes (optnl)
-taskCompletion:[LaborTask]
-+complete:boolean {return taskCompletion.all?;}
-
-LaborTask (nested route [if there is a route])
----------
+Task (nested route)
+----
 description
-parent:DidLaborEvent
-complete:bool
+:Labor  # this was my mistake last time
+
+Done (sub-nested shallow)
+--------
+:Task
+complete:boolean
+
+Did (nested route)
+---
+date
+notes (optnl)
+:Labor
+:[Done]
++complete:boolean {return dones.all?;}
+

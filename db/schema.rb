@@ -11,44 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122174556) do
-
-  create_table "did_labor_events", force: :cascade do |t|
-    t.datetime "time",       null: false
-    t.integer  "labor_id",   null: false
-    t.text     "notes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "did_labor_events", ["labor_id"], name: "index_did_labor_events_on_labor_id"
-
-  create_table "labor_tasks", force: :cascade do |t|
-    t.string   "description",                        null: false
-    t.boolean  "complete",           default: false, null: false
-    t.integer  "did_labor_event_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-  end
-
-  add_index "labor_tasks", ["did_labor_event_id"], name: "index_labor_tasks_on_did_labor_event_id"
-
-  create_table "labors", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.string   "description"
-    t.integer  "user_id",     null: false
-    t.string   "dueday"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "labors", ["user_id"], name: "index_labors_on_user_id"
+ActiveRecord::Schema.define(version: 20150121195637) do
 
   create_table "recipes", force: :cascade do |t|
     t.string   "name",          null: false
     t.string   "url",           null: false
     t.date     "date_to_serve"
-    t.integer  "user_id",       null: false
+    t.integer  "user_id"
     t.string   "partner",       null: false
     t.text     "ingredients",   null: false
     t.datetime "created_at",    null: false

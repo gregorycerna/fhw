@@ -10,6 +10,5 @@ class CreateRecipes < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_foreign_key :recipes, :users
-
   end
 end

@@ -1,0 +1,27 @@
+%h1 Listing labors
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th User
+      %th Dueday
+      %th
+      %th
+      %th
+
+  %tbody
+    - @labors.each do |labor|
+      %tr
+        %td= labor.name
+        %td= labor.description
+        %td= labor.user
+        %td= labor.dueday
+        %td= link_to 'Show', labor
+        %td= link_to 'Edit', edit_labor_path(labor)
+        %td= link_to 'Destroy', labor, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Labor', new_labor_path

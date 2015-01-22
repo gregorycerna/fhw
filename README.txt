@@ -36,7 +36,7 @@ submitter:User
 Step 3
 ======
 
-Member
+User (improved)
 ------
 name
 email/password (devise)
@@ -57,7 +57,7 @@ date submitted
 dates cooked
 ingredients
 weblink:URL
-cooks:[Member]
+cooks:[User]
 
 Step 5
 ======
@@ -66,19 +66,31 @@ Officer
 -------
 title
 description
-holders:[Member]
+holders:[User]
 
-Step 6
-======
+Step 6 (Labor management system)
+================================
 
-Labor # some sort of labor management system
+Labor
 -----
 name
-:[DidLaborEvent]
+description
+tasks:[LaborTask]
+holder:User   # one User per labor?
+timesItWasDone:[DidLaborEvent]
+duedate:Date
 
-DidLaborEvent
+DidLaborEvent (nested route [if there is a route])
 -------------
 date
 :Labor
-description of what I did
+:User (user = labor.user)
+notes (optnl)
+taskCompletion:[LaborTask]
++complete:boolean {return taskCompletion.all?;}
 
+LaborTask (nested route [if there is a route])
+---------
+description
+parent:DidLaborEvent
+complete:bool

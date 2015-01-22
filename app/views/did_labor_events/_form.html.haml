@@ -1,0 +1,10 @@
+= simple_form_for(@did_labor_event) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :time
+    = f.association :labor
+    = f.input :notes
+
+  .form-actions
+    = f.button :submit

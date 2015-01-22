@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :recipes
 
   mount Upmin::Engine => '/admin'
   root to: 'visitors#index'
@@ -13,4 +12,10 @@ Rails.application.routes.draw do
 
   resources :recipes
   patch '/recipes/:id/clear_date' => 'recipes#clear_date', as: :clear_date
+
+  resources :labors do
+    resources :labor_tasks
+    resources :did_labor_events
+  end
+
 end

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Description:
+  = @labor_task.description
+%p
+  %b Complete:
+  = @labor_task.complete
+%p
+  %b Didlaborevent:
+  = @labor_task.didLaborEvent
+
+= link_to 'Edit', edit_labor_task_path(@labor_task)
+\|
+= link_to 'Back', labor_tasks_path

@@ -85,16 +85,16 @@ Task (nested route)
 description
 :Labor  # this was my mistake last time
 
-Done (sub-nested shallow)
---------
-:Task
-complete:boolean
-
 Did (nested route)
 ---
-date
+time:datetime
 notes (optnl)
 :Labor
-:[Done]
+:[Checkoff]
 +complete:boolean {return dones.all?;}
 
+Checkoff (sub-nested shallow)
+--------
+:Task:references
+:Did:belongs_to
+complete:boolean

@@ -1,6 +1,6 @@
 %h1 Listing dids
 
-%table
+%table.table.table-striped.table-bordered.table-hover
   %thead
     %tr
       %th Time
@@ -9,17 +9,17 @@
       %th
       %th
       %th
-      
+
   %tbody
     - @dids.each do |did|
       %tr
         %td= did.time
         %td= did.notes
-        %td= did.labor
+        %td= did.labor.name
         %td= link_to 'Show', did
         %td= link_to 'Edit', edit_did_path(did)
-        %td= link_to 'Destroy', did, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to 'Destroy', did, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Did', new_did_path
+= link_to 'New Did', new_labor_did_path

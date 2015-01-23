@@ -26,6 +26,10 @@ class DidsController < ApplicationController
 
   def create
     @did = Did.new(did_params)
+    puts @did
+    @did.checkoffs.each_with_index do |chk, idx|
+      chk.task_id = idx
+    end
     @did.labor_id = params[:labor_id]
     @did.save
     respond_with(@did)
@@ -47,6 +51,6 @@ class DidsController < ApplicationController
     end
 
     def did_params
-      params.require(:did).permit(:time, :notes, :labor_id)
+      params.require(:did).permit(:time, :notes, :labor_id, checkoffs_attributes:[:complete])
     end
 end

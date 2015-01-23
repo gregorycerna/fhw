@@ -17,9 +17,12 @@ Rails.application.routes.draw do
   patch '/recipes/:id/clear_date' => 'recipes#clear_date', as: :clear_date
 
   # labor stuff
-  resources :checkoffs
-  resources :dids
-  resources :tasks
-  resources :labors
-
+  shallow do
+    resources :labors do
+      resources :tasks
+      resources :dids do
+        resources :checkoffs
+      end
+    end
+  end
 end

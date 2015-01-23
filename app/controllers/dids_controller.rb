@@ -44,7 +44,7 @@ class DidsController < ApplicationController
       checks[0...len/2].each_with_index do |chk, tsk|
         chk.complete = checks[len/2+tsk].complete
       end
-      @did.checkoffs.delete @did.checkoffs[len/2..len-1]
+      checks.delete checks[len/2..len-1]
       @did.save
     end
     respond_with(@did)

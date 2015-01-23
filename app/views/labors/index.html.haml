@@ -19,7 +19,9 @@
         %td= labor.description
         %td= labor.user.name
         %td= labor.dueday
-        %td= labor.user == current_user ? link_to("TODO: 'new did form'", new_labor_did_path(labor)) : ""
+        %td= labor.user == current_user ? link_to("I did it",
+                                                  new_labor_did_path(labor),
+                                                  class: 'btn btn-xs btn-success') : ""
         %td= link_to 'Edit', edit_labor_path(labor)
         %td= link_to 'Destroy', labor, method: :delete, data: { confirm: 'Are you sure?' }
 

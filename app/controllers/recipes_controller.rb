@@ -53,7 +53,7 @@ class RecipesController < ApplicationController
     params.require(:recipe).permit(:name, :url, :date_to_serve, :user_id,
                                    :partner, :ingredients, :day)
   end
-  
+
   def preparse_params
     if params.has_key?(:recipe) && params[:recipe].has_key?(:day)
       params[:recipe][:day] = Date::DAYNAMES[params[:recipe][:day].to_i]

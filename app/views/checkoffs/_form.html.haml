@@ -1,0 +1,10 @@
+= simple_form_for(@checkoff) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :task
+    = f.association :did
+    = f.input :complete
+
+  .form-actions
+    = f.button :submit

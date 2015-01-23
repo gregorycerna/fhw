@@ -1,0 +1,30 @@
+%h1 Listing labors
+
+%table.table.table-striped.table-striped.table-hover
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th User
+      %th Dueday
+      %th Submit
+      %th
+      %th
+
+  %tbody
+    - @labors.each do |labor|
+      %tr
+        %td
+          %b= link_to labor.name, labor
+        %td= labor.description
+        %td= labor.user.name
+        %td= labor.dueday
+        %td= labor.user == current_user ? link_to("I did it",
+                                                  new_labor_did_path(labor),
+                                                  class: 'btn btn-xs btn-success') : ""
+        %td= link_to 'Edit', edit_labor_path(labor)
+        %td= link_to 'Destroy', labor, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Labor', new_labor_path

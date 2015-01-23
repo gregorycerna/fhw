@@ -1,0 +1,41 @@
+%p#notice= notice
+
+%p
+  %b Time:
+  = long_date @did.time
+%p
+  %b Added at:
+  = long_date @did.created_at
+%p
+  %b Notes:
+  = @did.notes
+%p
+  %b Labor:
+  = @did.labor.name
+%p
+  %b Labor Holder:
+  = @did.labor.user.name
+
+%h3 Tasks
+
+- if @did.completes.count > 0
+  %h4 Done
+  %ol
+    - @did.completes.each do |c|
+      %li= c.task.description
+
+:sass
+  #not-done
+    color: red
+
+- if @did.incomplete
+  %h4#not-done Not Done
+  %ol
+    - @did.incompletes.each do |c|
+      %li= c.task.description
+
+%hr
+
+= link_to 'Edit', edit_did_path(@did), class: 'btn btn-warning'
+\|
+= link_to 'Back', labor_dids_path(@did.labor), class: 'btn btn-success'

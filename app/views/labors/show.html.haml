@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @labor.name
+%p
+  %b Description:
+  = @labor.description
+%p
+  %b User:
+  = @labor.user.name
+%p
+  %b Dueday:
+  = @labor.dueday
+%br
+%h4 Labor Tasks
+%ol
+  - @labor.tasks.each do |task|
+    %li= task.description
+
+%br
+= link_to 'Add task', new_labor_task_path(@labor), class: 'btn btn-default'
+%br
+%br
+= link_to 'Edit', edit_labor_path(@labor)
+\|
+= link_to 'Back', labors_path

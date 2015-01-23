@@ -1,0 +1,8 @@
+%h1 Editing did
+
+= simple_form_for @did do |f|
+  = render 'form', f: f
+
+= link_to 'Show', @did
+\|
+= link_to 'Back', labor_dids_path(@did.labor)

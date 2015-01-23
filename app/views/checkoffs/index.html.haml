@@ -1,0 +1,25 @@
+%h1 Listing checkoffs
+
+%table
+  %thead
+    %tr
+      %th Task
+      %th Did
+      %th Complete
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @checkoffs.each do |checkoff|
+      %tr
+        %td= checkoff.task
+        %td= checkoff.did
+        %td= checkoff.complete
+        %td= link_to 'Show', checkoff
+        %td= link_to 'Edit', edit_checkoff_path(checkoff)
+        %td= link_to 'Destroy', checkoff, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Checkoff', new_checkoff_path

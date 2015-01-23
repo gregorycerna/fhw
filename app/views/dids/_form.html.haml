@@ -1,0 +1,14 @@
+= f.error_notification
+.form-inputs
+  = f.input :time
+  = f.input :notes
+  - @did.checkoffs.each do |c|
+    = f.fields_for :checkoffs, c do |b|
+      = f.label c.task.description
+      = b.check_box :complete
+      %br
+
+.form-actions
+  = f.button :submit
+
+

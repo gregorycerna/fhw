@@ -2,18 +2,30 @@
 
 %p
   %b Time:
-  = @did.time
+  = @did.time.strftime("%A %B %d, %I:%M%P")
 %p
   %b Notes:
   = @did.notes
 %p
   %b Labor:
   = @did.labor.name
+%p
+  %b Labor Holder:
+  = @did.labor.user.name
 
-%h4 Parts Done
+%h3 Tasks
+
+%h4 Done
 %ol
-  - @did.checkoffs.each do |c|
-    %li= c.complete ? 'done' : 'not done'
+  - @did.checkoffs.each_with_index do |c, idx|
+    - if c.complete
+      %li= @did.labor.tasks[idx].description
+
+%h4 Not Done
+%ol
+  - @did.checkoffs.each_with_index do |c, idx|
+    - unless c.complete
+      %li= @did.labor.tasks[idx].description
 
 = link_to 'Edit', edit_did_path(@did)
 \|

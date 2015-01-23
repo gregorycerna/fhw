@@ -14,6 +14,10 @@ class DidsController < ApplicationController
 
   def new
     @did = Did.new
+    @labor = Labor.find(params[:labor_id])
+    @did.checkoffs = @labor.tasks.map do |task|
+      Checkoff.new(task_id: task.id)
+    end
     respond_with(@did)
   end
 
@@ -22,6 +26,7 @@ class DidsController < ApplicationController
 
   def create
     @did = Did.new(did_params)
+    @did.labor_id = params[:labor_id]
     @did.save
     respond_with(@did)
   end

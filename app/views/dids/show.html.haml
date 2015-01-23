@@ -8,8 +8,13 @@
   = @did.notes
 %p
   %b Labor:
-  = @did.labor
+  = @did.labor.name
+
+%h4 Parts Done
+%ol
+  - @did.checkoffs.each do |c|
+    %li= c.complete ? 'done' : 'not done'
 
 = link_to 'Edit', edit_did_path(@did)
 \|
-= link_to 'Back', dids_path
+= link_to 'Back', labor_dids_path(@did.labor)

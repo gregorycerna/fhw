@@ -23,7 +23,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.save
-    respond_with(@task)
+    respond_with(@task.labor)
   end
 
   def update

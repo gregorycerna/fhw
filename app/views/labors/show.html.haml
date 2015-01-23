@@ -19,9 +19,10 @@
     %li= task.description
 
 %br
-= link_to 'Add task', new_labor_task_path(@labor), class: 'btn btn-default'
-%br
-%br
-= link_to 'Edit', edit_labor_path(@labor)
-\|
-= link_to 'Back', labors_path
+- if user_signed_in? && current_user.isLaborCzar
+  = link_to 'Czar Add Task', new_labor_task_path(@labor), class: 'btn btn-warning'
+  \||
+  = link_to 'Czar Assign & Edit Labor Description', edit_labor_path(@labor), class: 'btn btn-warning'
+  %br
+  %br
+= link_to 'Back', labors_path, class: 'btn btn-default'

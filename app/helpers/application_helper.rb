@@ -5,4 +5,7 @@ module ApplicationHelper
   def long_date date
     date.strftime("%A %B %d, %I:%M%P")
   end
+  def isLaborCzar
+    user_signed_in? && current_user.isLaborCzar
+  end
 end

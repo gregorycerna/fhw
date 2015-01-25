@@ -1,25 +1,14 @@
 ## Urgent
 
-Note: **Finish the backend *then* worry about the frontend.**
+2. *sign off* on `Did`s
+3. assign labor violations
+4. mark labor violations as `recompensed`
+5. pronounce other `User`(s) a `LaborCzar`
 
-### Labor Czar
+## Not so urgent
 
-Instead of an `Officer` class, there should simply be an `isLaborCzar` column
-on the `User` class.
-
-#### Step 1
-*Only* a user who `isLaborCzar` can
-
-1. *create* labor positions
-2. *assign* labor to people
-3. *edit* labor requirements
-
-#### Step 2
-
-1. *sign off* on `Did`s
-2. assign labor violations
-3. mark labor violations as `recompensed`
-4. pronounce other `User`(s) a `LaborCzar`
+1. When you log in you have buttons to log a `Did` for your labors
+1. Make rows with overdue labor **red**
 
 ## Static Pages (outsourced)
 
@@ -30,7 +19,7 @@ on the `User` class.
 5. rules (handbook read-only link)
 6. list of links to officer descriptions
 
-## Ideas for the future
+## Ideas for the distant future
 
     User (improved)
     ------

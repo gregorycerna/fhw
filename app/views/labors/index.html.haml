@@ -28,14 +28,17 @@
         %td= labor.user == current_user ? link_to("I did it",
                                                   new_labor_did_path(labor),
                                                   class: 'btn btn-xs btn-success') : ""
-        - if isLaborCzar
+        - if current_user_is_labor_czar
           %td= link_to 'Czar Edit', edit_labor_path(labor), class: 'btn btn-xs btn-info'
-          %td= link_to 'Czar Delete', labor, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger'
+          %td= link_to 'Czar Delete', labor,
+                method: :delete,
+                data: { confirm: 'Are you sure?' },
+                class: 'btn btn-xs btn-danger'
         - else
           %td
           %td
 
 %br
 
-- if isLaborCzar
+- if current_user_is_labor_czar
   = link_to 'Czar Create New Labor', new_labor_path, class: 'btn btn-lg btn-info'

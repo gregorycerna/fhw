@@ -1,16 +1,16 @@
 %p#notice= notice
 
-%p
-  %b Name:
+%h4
+  %b Labor Position:
   = @labor.name
-%p
+%h4
   %b Description:
   = @labor.description
-%p
-  %b User:
+%h4
+  %b Assignee:
   = @labor.user.name
-%p
-  %b Dueday:
+%h4
+  %b Day of the week:
   = @labor.dueday
 %br
 %h4 Labor Tasks
@@ -19,10 +19,22 @@
     %li= task.description
 
 %br
-- if user_signed_in? && current_user.isLaborCzar
-  = link_to 'Czar Add Task', new_labor_task_path(@labor), class: 'btn btn-warning'
-  \||
-  = link_to 'Czar Assign & Edit Labor Description', edit_labor_path(@labor), class: 'btn btn-warning'
-  %br
-  %br
 = link_to 'Back', labors_path, class: 'btn btn-default'
+%br
+%br
+%br
+
+- if current_user_is_labor_czar
+  .row
+    .col-md-3
+      .panel.panel-default
+        .panel-heading
+          %h3 Czar Panel
+        .panel-body
+          .well.well-sm
+            = render 'tasks/form', labor: @labor
+          .well.well-sm
+            = link_to 'Assign & Edit Description',
+              edit_labor_path(@labor),
+              class: 'btn btn-warning'
+          = render 'tasks/table', tasks: @labor.tasks

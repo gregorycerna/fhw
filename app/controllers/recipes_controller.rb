@@ -23,8 +23,11 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.save
-    respond_with(@recipe)
+    if user_signed_in?
+      @recipe.user_id = current_user.id
+      @recipe.save
+      respond_with(@recipe)
+    end
   end
 
   def update

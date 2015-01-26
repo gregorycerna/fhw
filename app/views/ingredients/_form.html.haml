@@ -1,0 +1,10 @@
+= simple_form_for(@ingredient) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :category, collection: ['dairy','meat','produce','grains','other'], prompt: "Select a category"
+    = f.association :recipe, prompt: "Select a recipe"
+
+  .form-actions
+    = f.button :submit

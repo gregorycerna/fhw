@@ -32,7 +32,8 @@ class DidsController < ApplicationController
       chk.task_id = tsk.id
     end
     @did.save
-    respond_with(@did)
+    @labors = Labor.all
+    redirect_to labors_path
   end
 
   def update

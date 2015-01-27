@@ -1,0 +1,11 @@
+= simple_form_for(@violation) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :description
+    = f.association :labor
+    = f.input :amount_due
+    = f.input :date_settled
+
+  .form-actions
+    = f.button :submit

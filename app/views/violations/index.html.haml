@@ -1,0 +1,27 @@
+%h1 Listing violations
+
+%table
+  %thead
+    %tr
+      %th Description
+      %th Labor
+      %th Amount due
+      %th Date settled
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @violations.each do |violation|
+      %tr
+        %td= violation.description
+        %td= violation.labor
+        %td= violation.amount_due
+        %td= violation.date_settled
+        %td= link_to 'Show', violation
+        %td= link_to 'Edit', edit_violation_path(violation)
+        %td= link_to 'Destroy', violation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Violation', new_violation_path

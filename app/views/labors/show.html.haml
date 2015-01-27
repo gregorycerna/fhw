@@ -24,6 +24,7 @@
 %br
 %br
 
+-# The "CZAR PANEL" TODO replace with in-place editing
 - if current_user_is_labor_czar
   .row
     .col-md-3
@@ -31,10 +32,13 @@
         .panel-heading
           %h3 Czar Panel
         .panel-body
+          = link_to 'Assign & Edit Description',
+            edit_labor_path(@labor),
+            class: 'btn btn-info'
+          %br
+          %br
           .well.well-sm
             = render 'tasks/form', labor: @labor
-          .well.well-sm
-            = link_to 'Assign & Edit Description',
-              edit_labor_path(@labor),
-              class: 'btn btn-warning'
           = render 'tasks/table', tasks: @labor.tasks
+          = link_to 'TODO violate', labors_path,
+            class: 'btn btn-warning'

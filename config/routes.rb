@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   mount Upmin::Engine => '/admin'
 
   # static pages
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   shallow do
     resources :labors do
       resources :tasks
+      resources :violations
       resources :dids do
         resources :checkoffs
       end

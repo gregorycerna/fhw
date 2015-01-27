@@ -4,9 +4,9 @@ class ViolationsController < ApplicationController
   respond_to :html
 
   def index
-    @violations = Violation.all
-    @unsettled, @settled = @violations.partition { |v| v.date_settled.nil?}
-    respond_with(@violations)
+    # @violations = Violation.all
+    # @unsettled, @settled = @violations.partition { |v| v.date_settled.nil?}
+    redirect_to labors_path
   end
 
   def show
@@ -15,6 +15,7 @@ class ViolationsController < ApplicationController
 
   def new
     @violation = Violation.new
+    @violation.labor = Labor.find(params[:labor_id])
     respond_with(@violation)
   end
 
@@ -23,18 +24,19 @@ class ViolationsController < ApplicationController
 
   def create
     @violation = Violation.new(violation_params)
+    @violation.labor_id = params[:labor_id]
     @violation.save
-    respond_with(@violation)
+    redirect_to labors_path
   end
 
   def update
     @violation.update(violation_params)
-    respond_with(@violation)
+    redirect_to labors_path
   end
 
   def destroy
     @violation.destroy
-    respond_with(@violation)
+    redirect_to labors_path
   end
 
   def settle

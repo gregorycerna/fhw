@@ -5,14 +5,10 @@
   = @violation.description
 %p
   %b Labor:
-  = @violation.labor
+  = @violation.labor.name
 %p
   %b Amount due:
   = @violation.amount_due
 %p
   %b Date settled:
-  = @violation.date_settled
-
-= link_to 'Edit', edit_violation_path(@violation)
-\|
-= link_to 'Back', violations_path
+  = long_date @violation.date_settled

@@ -40,5 +40,5 @@
           .well.well-sm
             = render 'tasks/form', labor: @labor
           = render 'tasks/table', tasks: @labor.tasks
-          = link_to 'TODO violate', labors_path,
+          = link_to 'Issue Violation', new_labor_violation_path(@labor),
             class: 'btn btn-warning'

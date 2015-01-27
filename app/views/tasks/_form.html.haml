@@ -1,10 +1,9 @@
 = simple_form_for @task,
-  url: labor_tasks_path do |f|
+  url: labor_tasks_path(params[:id]) do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :description
-    = f.association :labor
+    = f.input :description, label: 'Add Task to Labor'
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, 'Add Task'

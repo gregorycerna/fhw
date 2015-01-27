@@ -1,0 +1,63 @@
+%h3 Outstanding
+- if @unsettled.count > 0
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Person
+        %th Description
+        %th Labor
+        %th Amount due
+        - if current_user_is_labor_czar
+          %th
+          %th
+          %th
+
+    %tbody
+      - @unsettled.each do |violation|
+        %tr
+          %td= violation.labor.user.name
+          %td= link_to violation.description, violation
+          %td= link_to violation.labor.name, violation.labor
+          %td= violation.amount_due
+          - if current_user_is_labor_czar
+            %td= link_to 'Settle', settle_violation_path(violation),
+              method: :patch, class: 'btn btn-xs btn-warning'
+            %td= link_to 'Edit', edit_violation_path(violation), class: 'btn btn-xs btn-info'
+            %td= link_to 'Destroy', violation,
+              method: :delete, data: { confirm: 'Are you sure?' },
+              class: 'btn btn-xs btn-danger'
+- else
+  %h3 None!
+
+%br
+
+%h3 Settled
+- if @settled.count > 0
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Person
+        %th Description
+        %th Labor
+        %th Date settled
+        - if current_user_is_labor_czar
+          %th
+          %th
+          %th
+
+    %tbody
+      - @settled.each do |violation|
+        %tr
+          %td= violation.labor.user.name
+          %td= link_to violation.description, violation
+          %td= link_to violation.labor.name, violation.labor
+          %td= long_date violation.date_settled
+          - if current_user_is_labor_czar
+            %td= link_to 'Unsettle', unsettle_violation_path(violation),
+                method: :patch, class: 'btn btn-xs btn-warning'
+            %td= link_to 'Edit', edit_violation_path(violation), class: 'btn btn-xs btn-info'
+            %td= link_to 'Destroy', violation,
+              method: :delete, data: { confirm: 'Are you sure?' },
+              class: 'btn btn-xs btn-danger'
+- else
+  %h3 None!

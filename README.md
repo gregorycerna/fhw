@@ -1,17 +1,5 @@
 ## Urgent
 
-### Violations
-
-    Violation
-    ---------
-    description
-    :Labor
-    amount_due:integer
-    date_settled:datetime
-
-3. assign labor violations
-4. mark labor violations as `recompensed`
-
 ### Capitulation
 
 5. pronounce other `User`(s) a `LaborCzar`

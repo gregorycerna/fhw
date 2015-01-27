@@ -18,10 +18,13 @@ Rails.application.routes.draw do
   patch '/recipes/:id/clear_date' => 'recipes#clear_date', as: :clear_date
 
   # labor stuff
+  resources :violations
+  patch '/violations/:id/settle' => 'violations#settle', as: :settle_violation
+  patch '/violations/:id/unsettle' => 'violations#unsettle', as: :unsettle_violation
+
   shallow do
     resources :labors do
       resources :tasks
-      resources :violations
       resources :dids do
         resources :checkoffs
       end

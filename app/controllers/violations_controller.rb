@@ -1,10 +1,11 @@
 class ViolationsController < ApplicationController
-  before_action :set_violation, only: [:show, :edit, :update, :destroy]
+  before_action :set_violation, only: [:show, :edit, :update, :destroy, :settle, :unsettle]
 
   respond_to :html
 
   def index
     @violations = Violation.all
+    @unsettled, @settled = @violations.partition { |v| v.date_settled.nil?}
     respond_with(@violations)
   end
 
@@ -34,6 +35,18 @@ class ViolationsController < ApplicationController
   def destroy
     @violation.destroy
     respond_with(@violation)
+  end
+
+  def settle
+    @violation.date_settled = DateTime.now
+    @violation.save
+    redirect_to labors_path
+  end
+
+  def unsettle
+    @violation.date_settled = nil
+    @violation.save
+    redirect_to labors_path
   end
 
   private

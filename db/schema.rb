@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123212550) do
+ActiveRecord::Schema.define(version: 20150127192947) do
 
   create_table "checkoffs", force: :cascade do |t|
     t.integer  "task_id",    null: false
@@ -88,5 +88,16 @@ ActiveRecord::Schema.define(version: 20150123212550) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "violations", force: :cascade do |t|
+    t.string   "description",              null: false
+    t.integer  "labor_id",                 null: false
+    t.integer  "amount_due",   default: 0, null: false
+    t.datetime "date_settled"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "violations", ["labor_id"], name: "index_violations_on_labor_id"
 
 end

@@ -5,6 +5,8 @@ class LaborsController < ApplicationController
 
   def index
     @labors = Labor.all
+    @violations = Violation.all
+    @unsettled, @settled = @violations.partition {|v| v.date_settled.nil? }
     respond_with(@labors)
   end
 

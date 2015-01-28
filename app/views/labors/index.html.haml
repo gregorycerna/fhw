@@ -1,52 +1,61 @@
-%h1 Labor
-%h2 Who Does What
+:sass
+  .subheading
+    color: darkgray
+  .heading
+    font-family: Georgia, serif
+    font-weight: bold
 
-.row
-  .col-lg-12
-    %table.table.table-striped.table-bordered.table-hover
-      %thead
-        %tr
-          %th Name
-          %th Description
-          %th User
-          %th Dueday
-          %th Last Done
-          %th Submit
-          %th
-          %th
+%section#labor
+  .container
+    .row
+      .col-lg-3
+        %h1.heading Labor
+        %h3.subheading Who Does What
+      .col-lg-9
+        %table.table.table-striped.table-bordered.table-hover
+          %thead
+            %tr
+              %th Name
+              %th Description
+              %th User
+              %th Dueday
+              %th Last Done
+              %th Submit
+              - if current_user_is_labor_czar
+                %th
+                %th
 
-      %tbody
-        - @labors.each do |labor|
-          %tr
-            %td
-              %b= link_to labor.name, labor
-            %td= labor.description
-            %td= labor.user.name
-            %td= labor.dueday
-            %td
-              - if labor.dids.last.nil?
-                Never been done
-              - else
-                = long_date labor.dids.last.time
-            %td= labor.user == current_user ? link_to("I did it",
-                                                      new_labor_did_path(labor),
-                                                      class: 'btn btn-xs btn-success') : ""
-            - if current_user_is_labor_czar
-              %td= link_to 'Czar Edit', edit_labor_path(labor), class: 'btn btn-xs btn-info'
-              %td= link_to 'Czar Delete', labor,
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' },
-                    class: 'btn btn-xs btn-danger'
-            - else
-              %td
-              %td
+          %tbody
+            - @labors.each do |labor|
+              %tr
+                %td
+                  %b= link_to labor.name, labor
+                %td= labor.description
+                %td= labor.user.name
+                %td= labor.dueday
+                %td
+                  - if labor.dids.last.nil?
+                    Never been done
+                  - else
+                    = long_date labor.dids.last.time
+                %td= labor.user == current_user ? link_to("I did it",
+                                                          new_labor_did_path(labor),
+                                                          class: 'btn btn-xs btn-success') : ""
+                - if current_user_is_labor_czar
+                  %td= link_to 'Czar Edit', edit_labor_path(labor), class: 'btn btn-xs btn-info'
+                  %td= link_to 'Czar Delete', labor,
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' },
+                        class: 'btn btn-xs btn-danger'
 
-    - if current_user_is_labor_czar
-      = link_to 'Czar Create New Labor', new_labor_path, class: 'btn btn-lg btn-info'
-%br
-%br
-.row
-  .col-lg-12
-    %h1 Violations
-    %h2 Who didn't do What
-    = render template: 'violations/index'
+        - if current_user_is_labor_czar
+          = link_to 'Czar Create New Labor', new_labor_path, class: 'btn btn-lg btn-info'
+
+%section#violations
+  .container
+    .row
+      .col-lg-3
+        %h1.heading Violations
+        %h3.subheading Who didn't do What
+      .col-lg-9
+        = render template: 'violations/index'

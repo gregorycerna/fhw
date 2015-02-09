@@ -34,4 +34,6 @@ Rails.application.routes.draw do
   # maintenance stuff
   resources :maintenance_requests
   get 'completed-maintenance-requests' => 'maintenance_requests#dones', as: :done_maintenance_requests
+  patch 'maintenance_requests/:id/finish' => 'maintenance_requests#finish', as: :finish_maintenance_request
+  patch 'maintenance_requests/:id/unfinish' => 'maintenance_requests#unfinish', as: :unfinish_maintenance_request
 end

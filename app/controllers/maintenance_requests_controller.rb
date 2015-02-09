@@ -1,5 +1,5 @@
 class MaintenanceRequestsController < ApplicationController
-  before_action :set_maintenance_request, only: [:show, :edit, :update, :destroy]
+  before_action :set_maintenance_request, only: [:show, :edit, :update, :destroy, :finish, :unfinish]
 
   respond_to :html
 
@@ -40,6 +40,16 @@ class MaintenanceRequestsController < ApplicationController
   def destroy
     @maintenance_request.destroy
     respond_with(@maintenance_request)
+  end
+
+  def finish
+    @maintenance_request.update_attribute :done, true
+    redirect_to maintenance_requests_path
+  end
+
+  def unfinish
+    @maintenance_request.update_attribute :done, false
+    redirect_to maintenance_requests_path
   end
 
   private

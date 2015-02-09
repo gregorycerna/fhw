@@ -30,4 +30,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  # maintenance stuff
+  resources :maintenance_requests
+  get 'completed-maintenance-requests' => 'maintenance_requests#dones', as: :done_maintenance_requests
 end

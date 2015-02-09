@@ -1,29 +1,47 @@
-## Urgent
+## TODOS
 
 1. __Pundit for labor-czar__ --- see links
 2. __Capitulation__ --- pronounce other `User`(s) a `LaborCzar`
 3. __email__ --- see links
 
-## Not so urgent
-
-### Maintenance
+### Maintenance v1.0
 
     MaintenanceRequest
     --------
     name
     initiator:User
     description:text
-    tags:[Tag]
-    comments:[Comment]
+    has_many:[Comment]
+    done:boolean
+
+    Comment
+    -------
+    references:User
+    comment:text
+    belongs_to:MaintenanceRequest
+
+### Maintenance v1.1
+
+    MaintenanceRequest
+    ------------------
+    ...
+    :[Pictures]
+
+    Comment
+    -------
+    ...
+    :[Pictures]
+
+### Maintenance v1.2
+
+    MaintenanceRequest
+    --------
+    ...
+    :[Tags]
 
     Tag
     ---
     name
-
-    Comment
-    -------
-    :User
-    comment:text
 
 ### Events
 

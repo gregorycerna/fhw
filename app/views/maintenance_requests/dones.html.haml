@@ -1,0 +1,11 @@
+%h1
+  Completed Maintenance Requests
+  = link_to 'Incomplete maintenance requests', maintenance_requests_path, class: 'btn btn-lg btn-default'
+
+%section#maintenance
+  .container
+    .row
+      = render 'table'
+
+%br
+

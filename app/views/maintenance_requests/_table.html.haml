@@ -1,0 +1,16 @@
+%table.table.table-striped.table-bordered.table-hover
+  %thead
+    %tr
+      %th Name
+      %th User
+      %th
+
+  %tbody
+    - @maintenance_requests.each do |maintenance_request|
+      %tr
+        %td= link_to maintenance_request.name, maintenance_request
+        %td= maintenance_request.user.name
+        %td
+          - if current_user == maintenance_request.user
+            = link_to 'Destroy', maintenance_request,
+              method: :delete, data: { confirm: 'Are you sure?' }

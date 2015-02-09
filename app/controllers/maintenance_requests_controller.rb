@@ -27,6 +27,7 @@ class MaintenanceRequestsController < ApplicationController
 
   def create
     @maintenance_request = MaintenanceRequest.new(maintenance_request_params)
+    @maintenance_request.user = current_user
     @maintenance_request.save
     respond_with(@maintenance_request)
   end

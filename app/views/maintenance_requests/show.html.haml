@@ -1,17 +1,17 @@
 %p#notice= notice
 
 %p
-  %b Name:
+  %b Request:
   = @maintenance_request.name
 %p
-  %b User:
-  = @maintenance_request.user
+  %b Submitted by:
+  = @maintenance_request.user.name
 %p
   %b Description:
   = @maintenance_request.description
 %p
-  %b Done:
-  = @maintenance_request.done
+  %b Done?
+  = @maintenance_request.done ? 'Yes' : 'No'
 
 = link_to 'Edit', edit_maintenance_request_path(@maintenance_request)
 \|

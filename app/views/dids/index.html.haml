@@ -1,26 +1,6 @@
 %h1 Listing dids
 
--## TODO make this a partial and move it into labor/show ##
-
-%table.table.table-striped.table-bordered.table-hover
-  %thead
-    %tr
-      %th Time
-      %th Notes
-      %th Labor
-      %th
-      %th
-      %th
-
-  %tbody
-    - @dids.each do |did|
-      %tr
-        %td= did.time
-        %td= did.notes
-        %td= did.labor.name
-        %td= link_to 'Show', did
-        %td= link_to 'Edit', edit_did_path(did)
-        %td= link_to 'Destroy', did, method: :delete, data: { confirm: 'Are you sure?' }
+= render 'table'
 
 %br
 

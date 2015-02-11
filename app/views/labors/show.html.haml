@@ -42,3 +42,5 @@
           = render 'tasks/table', tasks: @labor.tasks
           = link_to 'Issue Violation', new_labor_violation_path(@labor),
             class: 'btn btn-warning'
+    .col-md-9
+      = render 'dids/table'

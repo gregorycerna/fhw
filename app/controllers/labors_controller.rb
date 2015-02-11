@@ -13,6 +13,7 @@ class LaborsController < ApplicationController
 
   def show
     @task = Task.new
+    @dids = Did.all.select {|d| d.labor == @labor}
     respond_with(@labor)
   end
 

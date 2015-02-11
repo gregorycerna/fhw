@@ -40,14 +40,12 @@ class ViolationsController < ApplicationController
   end
 
   def settle
-    @violation.date_settled = DateTime.now
-    @violation.save
+    @violation.update_attribute :date_settled, DateTime.now
     redirect_to labors_path
   end
 
   def unsettle
-    @violation.date_settled = nil
-    @violation.save
+    @violation.update_attribute :date_settled, nil
     redirect_to labors_path
   end
 

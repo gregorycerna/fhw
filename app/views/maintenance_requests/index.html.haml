@@ -1,0 +1,13 @@
+%h1
+  Outstanding Maintenance Requests
+  = link_to 'Completed maintenance requests', done_maintenance_requests_path, class: 'btn btn-lg btn-default'
+
+%section#maintenance
+  .container
+    .row
+      = render 'table'
+
+%br
+
+
+= link_to 'Submit Maintenance request', new_maintenance_request_path, class: 'btn btn-lg btn-default'

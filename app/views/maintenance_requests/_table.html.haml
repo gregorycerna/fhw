@@ -1,0 +1,28 @@
+%table.table.table-striped.table-bordered.table-hover
+  %thead
+    %tr
+      %th Name
+      %th User
+      %th Date Submitted
+      - if current_user.maintenance_officer
+        %th
+      %th
+
+  %tbody
+    - @maintenance_requests.each do |maintenance_request|
+      %tr
+        %td= link_to maintenance_request.name, maintenance_request
+        %td= maintenance_request.user.name
+        %td= long_date maintenance_request.created_at
+        - if current_user.maintenance_officer
+          - if maintenance_request.done
+            %td= link_to 'Undo', unfinish_maintenance_request_path(maintenance_request),
+              method: :patch, class: 'btn btn-xs btn-warning'
+          - else
+            %td= link_to 'Done', finish_maintenance_request_path(maintenance_request),
+              method: :patch, class: 'btn btn-xs btn-success'
+        %td
+          - if current_user == maintenance_request.user || current_user.maintenance_officer
+            = link_to 'Destroy', maintenance_request,
+              method: :delete, data: { confirm: 'Are you sure?' },
+              class: 'btn btn-xs btn-danger'

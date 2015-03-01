@@ -1,14 +1,19 @@
 class LaborsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_labor, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
   def index
     @labors = Labor.all
+    @violations = Violation.all
+    @unsettled, @settled = @violations.partition {|v| v.date_settled.nil? }
     respond_with(@labors)
   end
 
   def show
+    @task = Task.new
+    @dids = Did.all.select {|d| d.labor == @labor}
     respond_with(@labor)
   end
 
@@ -42,6 +47,9 @@ class LaborsController < ApplicationController
     end
 
     def labor_params
+      if params.has_key?(:labor) && params[:labor].has_key?(:dueday)
+        params[:labor][:dueday] = Date::DAYNAMES[params[:labor][:dueday].to_i]
+      end
       params.require(:labor).permit(:name, :description, :user_id, :dueday)
     end
 end

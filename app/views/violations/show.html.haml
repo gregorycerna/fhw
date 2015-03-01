@@ -1,0 +1,14 @@
+%p#notice= notice
+
+%p
+  %b Description:
+  = @violation.description
+%p
+  %b Labor:
+  = @violation.labor.name
+%p
+  %b Amount due:
+  = @violation.amount_due
+%p
+  %b Date settled:
+  = long_date @violation.date_settled

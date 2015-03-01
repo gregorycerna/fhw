@@ -1,5 +1,5 @@
-%h1 New task
+%h1 Add task to #{@labor.name}
 
-= render 'form'
+= render 'form', labor: @labor
 
 = link_to 'Back', labor_tasks_path

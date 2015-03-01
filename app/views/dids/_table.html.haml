@@ -1,0 +1,14 @@
+%table.table.table-striped.table-bordered.table-hover
+  %thead
+    %tr
+      %th Time
+      %th Notes
+      %th
+
+  %tbody
+    - @dids.each do |did|
+      %tr
+        %td= link_to long_date(did.time), did
+        %td= did.notes
+        %td= link_to 'Destroy', did, method: :delete,
+          data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger'

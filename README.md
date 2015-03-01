@@ -1,54 +1,69 @@
-## Urgent
+## TODOS
 
-Note: **Finish the backend *then* worry about the frontend.**
+1. __Pundit for labor-czar__ --- see links
+2. __Capitulation__ --- pronounce other `User`(s) a `LaborCzar`
+3. __email__ --- see links
 
-### Labor Czar
+### Maintenance v1.0
 
-Instead of an `Officer` class, there should simply be an `isLaborCzar` column
-on the `User` class.
-
-#### Step 1
-*Only* a user who `isLaborCzar` can
-
-1. *create* labor positions
-2. *assign* labor to people
-3. *edit* labor requirements
-
-#### Step 2
-
-1. *sign off* on `Did`s
-2. assign labor violations
-3. mark labor violations as `recompensed`
-4. pronounce other `User`(s) a `LaborCzar`
-
-## Static Pages (outsourced)
-
-1. index
-2. about
-3. join
-4. contact
-5. rules (handbook read-only link)
-6. list of links to officer descriptions
-
-## Ideas for the future
-
-    User (improved)
-    ------
+    MaintenanceRequest
+    --------
     name
-    email/password (devise)
-    officerships:[Officer]
-    recipes:[Recipe]
+    initiator:User
+    description:text
+    has_many:[Comment]
+    done:boolean
+
+    Comment
+    -------
+    references:User
+    comment:text
+    belongs_to:MaintenanceRequest
+
+### Maintenance v1.1
+
+    MaintenanceRequest
+    ------------------
+    ...
+    :[Pictures]
+
+    Comment
+    -------
+    ...
+    :[Pictures]
+
+### Maintenance v1.2
+
+    MaintenanceRequest
+    --------
+    ...
+    :[Tags]
+
+    Tag
+    ---
+    name
+
+### Events
+
+    Event
+    -----
+    name
+    description
+    date
+
+### In place editing
+
+Replace the "Czar Panel" with something integrated into the normal interface
+   using that inline editing thing from `Trracker`
+
+### House directory
+
+    User
+    ----
+    ... # existing stuff
     car
-    permanent address
+    room:integer
     phone number
-    emergency contact
-
-    Recipe (improved)
-    ------
-    name
-    date submitted
-    dates cooked
-    ingredients
-    weblink:URL
-    cooks:[User]
-
+    emergency contact name
+    emergency contact phone number
+    dietary restrictions

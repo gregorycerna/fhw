@@ -1,0 +1,16 @@
+%table.table.table-bordered.table-hover.table-striped
+  %h4 Edit existing tasks
+  %tbody
+    - if tasks.count > 0
+      - tasks.each do |task|
+        %tr
+          %td
+            = task.description
+            = link_to 'Delete',
+              task,
+              method: :delete,
+              data: { confirm: 'Are you sure?' },
+              class: 'btn btn-xs btn-danger'
+    - else
+      .well.well-sm
+        This labor position has no tasks yet

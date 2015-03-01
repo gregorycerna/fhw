@@ -1,4 +1,5 @@
 class DidsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_did, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -32,7 +33,8 @@ class DidsController < ApplicationController
       chk.task_id = tsk.id
     end
     @did.save
-    respond_with(@did)
+    @labors = Labor.all
+    redirect_to labors_path
   end
 
   def update

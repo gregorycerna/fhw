@@ -7,17 +7,20 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
+
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'haml-rails'
 gem 'pundit'
 gem 'simple_form'
 gem 'upmin-admin'
+
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'
@@ -32,17 +35,20 @@ group :development do
   gem 'rb-inotify', require: false
   gem 'spring-commands-rspec'
 end
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'
   gem 'sqlite3'
 end
-group :production do
+
+group :production do  # for use with heroku
   gem 'pg'
   gem 'rails_12factor'
   gem 'unicorn'
 end
+
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
@@ -51,6 +57,6 @@ group :test do
 end
 
 # Added by me
-gem 'redcarpet' # enable markdown in haml
+gem 'redcarpet'             # enable markdown in haml
 gem "paperclip", "~> 4.2"   # file attachment for Active Record
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails'       # load jquery UI into all pages

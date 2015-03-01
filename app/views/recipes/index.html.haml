@@ -15,7 +15,6 @@
       %th Url
       %th Date to serve
       %th User
-      %th Partner
       %th Ingredients
       %th
 
@@ -26,7 +25,6 @@
         %td= recipe.url
         %td= possible_date recipe.date_to_serve
         %td= recipe.user.name
-        %td= recipe.partner
         %td
           %pre= recipe.ingredients
         %td= link_to 'Delete', recipe, method: :delete, data: { confirm: 'Are you sure?' }
@@ -42,7 +40,6 @@
       %th Url
       %th Date to serve
       %th User
-      %th Partner
       %th Ingredients
       %th
       %th
@@ -54,7 +51,6 @@
         %td= recipe.url
         %td= possible_date recipe.date_to_serve
         %td= recipe.user.name
-        %td= recipe.partner
         %td
           %pre= recipe.ingredients
         %td= link_to 'Delete', recipe, method: :delete, data: { confirm: 'Are you sure?' }

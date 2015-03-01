@@ -13,4 +13,7 @@ class User < ActiveRecord::Base
 
   has_many :labors
   has_many :dids, through: :labors
+
+  # Recipes
+  has_many :recipes
 end

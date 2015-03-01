@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209165454) do
+ActiveRecord::Schema.define(version: 20150301082910) do
 
   create_table "checkoffs", force: :cascade do |t|
     t.integer  "task_id",    null: false
@@ -38,8 +38,9 @@ ActiveRecord::Schema.define(version: 20150209165454) do
     t.string   "name"
     t.string   "category"
     t.integer  "recipe_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.decimal  "price",      precision: 5, scale: 2
   end
 
   add_index "ingredients", ["recipe_id"], name: "index_ingredients_on_recipe_id"
@@ -70,12 +71,11 @@ ActiveRecord::Schema.define(version: 20150209165454) do
     t.string   "name",          null: false
     t.string   "url",           null: false
     t.date     "date_to_serve"
-    t.integer  "user_id"
-    t.string   "partner",       null: false
     t.text     "ingredients",   null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "day",           null: false
+    t.integer  "user_id"
   end
 
   add_index "recipes", ["user_id"], name: "index_recipes_on_user_id"

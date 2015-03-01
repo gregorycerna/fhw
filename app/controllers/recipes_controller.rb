@@ -23,11 +23,8 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    if user_signed_in?
-      @recipe.user_id = current_user.id
-      @recipe.save
-      respond_with(@recipe)
-    end
+    @recipe.save
+    respond_with(@recipe)
   end
 
   def update
@@ -54,10 +51,13 @@ class RecipesController < ApplicationController
   def recipe_params
     preparse_params
     params.require(:recipe).permit(:name, :url, :date_to_serve, :user_id,
-                                   :partner, :ingredients, :day)
+                                   :ingredients, :day)
   end
 
   def preparse_params
+    if user_signed_in?
+      params[:recipe][:user_id] = current_user.id
+    end
     if params.has_key?(:recipe) && params[:recipe].has_key?(:day)
       params[:recipe][:day] = Date::DAYNAMES[params[:recipe][:day].to_i]
     end
